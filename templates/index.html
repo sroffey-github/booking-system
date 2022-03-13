@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../static/css/style.css">
+    <script src="../static/js/main.js"></script>
+    <title>Booking System</title>
+</head>
+<body>
+
+    <nav class="topnav" id="mobileNav">
+        <a href="/" class="active">Home</a>
+        <a href="javascript:void(0);" class="icon" onclick="mobileNav()">
+          <i class="fa fa-bars"></i>
+        </a>
+    </nav>
+
+    <form action="" method="POST" class="container">
+        <input type="text" name="name" placeholder="Full Name"><br>
+        <input type="email" name="email" placeholder="Email Address"><br>
+        <input type="text" name="mobile" placeholder="Contact Number"><br>
+        
+        <label for="guestDropdown">Number of Guests</label><br>
+        <select name="guestDropdown" id="guestDropdown"></select><br>
+
+        <label for="calendar">Date of Booking</label><br>
+        <div class="calendar" id="calendar"></div><br>
+
+        <input type="submit" name="submit_btn" value="Check Times">
+
+        {% if times is defined %}
+            <label for="timeDropdown">Time for Booking</label><br>
+            <select name="timeDropdown" id="timeDropdown">
+                {% for i in times %}
+                    <option value="{{i}}">{{i}}</option>
+                {% endfor %}
+            </select><br>
+
+            <input type="submit" name="submit_btn" value="Book Table">
+        {% endif %}
+
+        {% for msg in get_flashed_messages() %}
+            <p>{{msg}}</p>
+        {% endfor %}
+        </form>
+
+</body>
+</html>
